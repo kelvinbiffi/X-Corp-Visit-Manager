@@ -1,26 +1,17 @@
 {
-  "name": "X-Corp-Visit-Manager",
-  "version": "1.0.0",
-  "description": "X-Corp Visit Manager",
-  "main": "index.js",
+  "name": "xcodeschedulevisit",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kelvinbiffi/X-Corp-Visit-Manager"
-  },
-  "author": "kelvinbiffi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kelvinbiffi/X-Corp-Visit-Manager/issues"
-  },
-  "homepage": "https://github.com/kelvinbiffi/X-Corp-Visit-Manager",
   "dependencies": {
-    "http": "*",
-    "fs": "*",
-    "ejs": "*",
-    "express": "2.5.10",
-    "body-parser": "*"
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
   }
 }

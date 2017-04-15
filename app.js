@@ -1,17 +1,12 @@
-//Basic requires
 var express = require('express');
+var favicon = require('serve-favicon');
 
-//Iniciando Server
-var app = module.exports = express.createServer();
+var app = express();
 
-//Server requires
-require('./config/env.js')(app, express);
-require('./config/routes.js')(app);
+require('./config/env.js')(__dirname, app, express);
 
-//Pegando porta predefinida para o server
-var port = app.get('port');
+var port = (process.env.PORT || 8000);
 
-//Definindo port de acesso
 app.listen(port, function(){
   console.log('Server running at port ' + port);
 });
