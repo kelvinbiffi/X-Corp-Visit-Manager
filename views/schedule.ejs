@@ -14,25 +14,24 @@
       </h1>
       <br>
 
-      <div class="form">
+      <form class="" action="/schedule" method="post">
 
-        <form class="" action="/schedule" method="post">
-
-          <span>Cidade</span><br>
-          <select class="" name="city">
-            <option value="">Selecione a cidade</option>
-            <% for(var i=0; i < cidades.length; i++) { %>
-              <option value="<%= i %>"><%= cidades[i] %></option>
-            <% } %>
-          </select>
-          <br>
-          <span>Data</span><br>
-          <input type="date" name="dd" value=""><br>
-
-          <input class="button-primary" type="submit" value="Agende uma visita"></input>
-        </form>
-
-      </div>
+        <span>Cidade</span><br>
+        <select class="" name="city">
+          <option value="">Selecione a cidade</option>
+          <% for(var i=0; i < cidades.length; i++) { %>
+            <option value="<%= i %>" <% if (i == city && city != '') { %> selected <% } %> ><%= cidades[i] %></option>
+          <% } %>
+        </select><br>
+        <br>
+        <span>Data</span><br>
+        <input type="date" name="date" value="<%= date %>"><br>
+        <br>
+        <% if (erro != '') { %>
+          <p class="alert"><%= erro %></p> 
+        <% } %>
+        <input class="button-primary" type="submit" value="Agendar"></input>
+      </form>
 
     </div>
 

@@ -108,6 +108,12 @@ html, body{
   }
 }
 
+.alert{
+  color: @colorRed;
+  font-family: @siteFontFamily;
+  font-size: 18px;
+}
+
 /**
  * error page style
  */
@@ -191,13 +197,21 @@ html, body{
       color: @colorBlack;
     }
 
-    .form{
-      form{
-        text-align: left;
-        span{
-          font-family: @siteFontFamily;
-          font-size: 22px;
-          color: @colorBlackSilver;
+    form{
+      span{
+        font-family: @siteFontFamily;
+        font-size: 22px;
+        color: @colorBlackSilver;
+      }
+
+      input[type="date"], select{
+        font-family: @siteFontFamily;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid @colorBlack;
+        border-radius: 3px;
+        &:focus{
+            outline: none;
         }
       }
     }
