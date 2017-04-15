@@ -1,0 +1,87 @@
+// out: ../stylesheets/style.css, sourcemap: false, compress: true
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Cherry+Cream+Soda');
+
+.transition(@transition){
+ -webkit-transition: @transition;
+ -moz-transition: @transition;
+ -ms-transition: @transition;
+ -o-transition: @transition;
+ transition: @transition;
+}
+
+.boxShadow(@context){
+  -webkit-box-shadow: @context;
+  -moz-box-shadow: @context;
+  box-shadow: @context;
+}
+
+.borderRadius(@context){
+ border-radius: @context;
+ -moz-border-radius: @context;
+ -webkit-border-radius: @context;
+}
+
+
+.button-primary{
+ width: 150px;
+ max-width: 100%;
+ height: 54px;
+ font-size: 24px;
+ font-family: @siteFontFamily;
+ text-align: center;
+ display: inline;
+ border: 2px solid @colorBlack;
+ cursor: pointer;
+ background-color: @colorWhite;
+ color: @colorBlack;
+}
+
+@siteFontFamily: 'Raleway', sans-serif;
+@siteFontError: 'Cherry Cream Soda', cursive;
+
+@colorWhite: #FFFFFF;
+@colorBlack: #000000;
+@colorBlackSilver: darken(#4c4c4c,13%);
+@colorRed: #b20000;
+
+//Error colors
+@colorSnuff: #DDD6EF;
+@colorClairvoyant: #490957;
+
+@lg-max: 1200px;
+@md-max: 992px;
+@sm-max: 768px;
+@xs-max: 480px;
+
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+.error{
+  background-color: @colorSnuff;
+  font-family: @siteFontError;
+
+  div{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    left: 0; top: 0; right: 0; bottom: 0;
+    margin: auto;
+    text-align: center;
+    color: @colorClairvoyant;
+
+    h1{
+      font-size: 60px;
+      margin-bottom: 0;
+    }
+
+    h2{
+      font-size: 18px;
+    }
+
+  }
+
+}

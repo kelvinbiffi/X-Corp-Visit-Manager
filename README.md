@@ -1,2 +1,2 @@
-# X-Corp-Visit-Manager
-X-Corp Visit Manager
+# X-Corp-Visit-Schedule
+X-Corp Visit Schedules
