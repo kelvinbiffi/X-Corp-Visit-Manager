@@ -1,4 +1,4 @@
-// out: ../stylesheets/style.css, sourcemap: false, compress: false
+// out: ../stylesheets/style.css, sourcemap: false, compress: true
 
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Cherry+Cream+Soda');
@@ -23,6 +23,12 @@
  -webkit-border-radius: @context;
 }
 
+.boxSizing(@context){
+  -ms-box-sizing: @context;
+  -moz-box-sizing: @context;
+  -webkit-box-sizing: @context;
+  box-sizing: @context;
+}
 
 .button-primary{
  font-size: 24px;
@@ -204,12 +210,14 @@ html, body{
         color: @colorBlackSilver;
       }
 
-      input[type="date"], select{
+      input[type="date"], input[type="text"], input[type="email"], select{
         font-family: @siteFontFamily;
         padding: 10px;
         margin: 5px;
         border: 1px solid @colorBlack;
         border-radius: 3px;
+        min-width: 300px;
+        .boxSizing(content-box);
         &:focus{
             outline: none;
         }

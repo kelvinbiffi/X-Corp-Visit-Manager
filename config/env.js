@@ -11,7 +11,7 @@ module.exports = function(__dirname, app, express){
 
   // images path setup
   app.set('images', path.join(__dirname, 'public/images'));
-
+  
   // uncomment after placing your favicon in /public
   app.use(logger('dev'));
   app.use(bodyParser.json());

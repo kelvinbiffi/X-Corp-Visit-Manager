@@ -16,6 +16,22 @@
 
       <form class="" action="/schedule" method="post">
 
+        <% if (erro != '') { %>
+          <p class="alert"><%= erro %></p>
+        <% } %>
+
+        <span>Nome</span><br>
+        <input type="text" name="name" value="<%= name %>"><br>
+        <br>
+
+        <span>E-mail</span><br>
+        <input type="email" name="email" value="<%= email %>"><br>
+        <br>
+
+        <span>Telefone</span><br>
+        <input type="text" name="fone" value="<%= fone %>"><br>
+        <br>
+
         <span>Cidade</span><br>
         <select class="" name="city">
           <option value="">Selecione a cidade</option>
@@ -24,12 +40,11 @@
           <% } %>
         </select><br>
         <br>
+
         <span>Data</span><br>
         <input type="date" name="date" value="<%= date %>"><br>
         <br>
-        <% if (erro != '') { %>
-          <p class="alert"><%= erro %></p> 
-        <% } %>
+
         <input class="button-primary" type="submit" value="Agendar"></input>
       </form>
 
