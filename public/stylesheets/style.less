@@ -1,4 +1,4 @@
-// out: ../stylesheets/style.css, sourcemap: false, compress: true
+// out: ../stylesheets/style.css, sourcemap: false, compress: false
 
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Cherry+Cream+Soda');
@@ -25,18 +25,21 @@
 
 
 .button-primary{
- width: 150px;
- max-width: 100%;
- height: 54px;
  font-size: 24px;
  font-family: @siteFontFamily;
  text-align: center;
- display: inline;
- border: 2px solid @colorBlack;
+ border: 2px solid @colorWhite;
+ .borderRadius(3px);
+ text-decoration: none;
+ padding: 10px;
  cursor: pointer;
- background-color: @colorWhite;
- color: @colorBlack;
+ background: none;
+ color: @colorWhite;
 }
+
+
+@indexBackground: url("../images/xbgIndex.png");
+@scheduleBackground: url("../images/xbgSchedule.png");
 
 @siteFontFamily: 'Raleway', sans-serif;
 @siteFontError: 'Cherry Cream Soda', cursive;
@@ -44,24 +47,72 @@
 @colorWhite: #FFFFFF;
 @colorBlack: #000000;
 @colorBlackSilver: darken(#4c4c4c,13%);
+@colorAlto: #DDDDDD;
 @colorRed: #b20000;
-
-//Error colors
-@colorSnuff: #DDD6EF;
-@colorClairvoyant: #490957;
 
 @lg-max: 1200px;
 @md-max: 992px;
 @sm-max: 768px;
 @xs-max: 480px;
 
+/**
+ * Generic Style
+ */
 html, body{
   margin: 0;
   padding: 0;
 }
 
+.header{
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: @colorWhite;
+  padding: 0;
+  text-align: center;
+  .boxShadow(0px 1px 5px 0px rgba(0,0,0,0.75));
+
+  .logo{
+    margin: 5px;
+    width: 60px;
+  }
+
+  span{
+    font-family: @siteFontFamily;
+    font-size: 25px;
+    margin-top: -10px;
+    display: block;
+  }
+
+  a{
+    text-decoration: none;
+    color: @colorBlackSilver;
+    &:hover{
+      color: @colorBlack;
+    }
+  }
+
+}
+
+.content{
+  min-height: 300px;
+  padding: 0px 100px;
+  padding-top: 100px!important;
+  padding-bottom: 100px!important;
+  @media(max-width: @md-max){
+    padding: 0px 50px;
+  }
+  @media(max-width: @sm-max){
+    padding: 0px 10px;
+  }
+}
+
+/**
+ * error page style
+ */
 .error{
-  background-color: @colorSnuff;
+  background-color: @colorWhite;
   font-family: @siteFontError;
 
   div{
@@ -71,7 +122,7 @@ html, body{
     left: 0; top: 0; right: 0; bottom: 0;
     margin: auto;
     text-align: center;
-    color: @colorClairvoyant;
+    color: @colorBlackSilver;
 
     h1{
       font-size: 60px;
@@ -82,6 +133,74 @@ html, body{
       font-size: 18px;
     }
 
-  }
+    a{
+      color: @colorBlackSilver;
+      border-color: @colorBlackSilver;
+    }
 
+  }
+}
+
+/**
+ * Index page style
+ */
+.index{
+  background-color: @colorAlto;
+  background-image: @indexBackground;
+  text-align: center;
+
+  .content{
+    h1{
+      font-family: @siteFontFamily;
+      font-size: 60px;
+      color: @colorBlack;
+    }
+
+    p{
+      font-family: @siteFontFamily;
+      font-size: 22px;
+      color: @colorBlackSilver;
+      span{
+        display: block;
+        &:last-child{
+          font-size: 18px;
+          color: @colorBlack;
+        }
+      }
+    }
+
+    a{
+      .button-primary;
+    }
+  }
+}
+
+
+/**
+ * Schedule page style
+ */
+.schedule{
+  background-color: @colorAlto;
+  background-image: @scheduleBackground;
+  text-align: center;
+
+  .content{
+    h1{
+      font-family: @siteFontFamily;
+      font-size: 60px;
+      color: @colorBlack;
+    }
+
+    .form{
+      form{
+        text-align: left;
+        span{
+          font-family: @siteFontFamily;
+          font-size: 22px;
+          color: @colorBlackSilver;
+        }
+      }
+    }
+
+  }
 }

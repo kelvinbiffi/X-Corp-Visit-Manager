@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <% include includes/head.html %>
+  </head>
+  <body class="schedule">
+
+    <% include includes/header.html %>
+
+    <div class="content">
+      <h1>
+        <%= title %>
+      </h1>
+      <br>
+
+      <div class="form">
+
+        <form class="" action="/schedule" method="post">
+
+          <span>Cidade</span><br>
+          <select class="" name="city">
+            <option value="">Selecione a cidade</option>
+            <% for(var i=0; i < cidades.length; i++) { %>
+              <option value="<%= i %>"><%= cidades[i] %></option>
+            <% } %>
+          </select>
+          <br>
+          <span>Data</span><br>
+          <input type="date" name="dd" value=""><br>
+
+          <input class="button-primary" type="submit" value="Agende uma visita"></input>
+        </form>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>

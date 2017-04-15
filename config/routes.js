@@ -1,9 +1,11 @@
 module.exports = function(app){
 
   var index = require('../routes/index');
-  var users = require('../routes/users');
+  var admin = require('../routes/admin');
+  var schedule = require('../routes/schedule');
 
   app.use('/', index);
-  app.use('/users', users);
+  app.use('/schedule', schedule);
+  app.use('/admin', admin);
 
 }

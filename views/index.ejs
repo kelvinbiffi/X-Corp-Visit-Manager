@@ -4,8 +4,25 @@
     <title><%= title %></title>
     <% include includes/head.html %>
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <body class="index">
+
+    <% include includes/header.html %>
+
+    <div class="content">
+      <h1>
+        Bem<br>
+        Vindo<br>
+        <%= title %>
+      </h1>
+
+      <p>
+        <span>A X-Corp é especialista em diversas soluções para a sua empresa ou pequeno negócio</span><br>
+        <span>Agende uma visita agora mesmo e mandaremos um de nossos vendedores para visitá-lo</span>
+      </p>
+      <br>
+      <a class="button-primary" href="schedule">Agendar uma visita</a>
+
+    </div>
+
   </body>
 </html>
