@@ -46,7 +46,9 @@ Para iniciar o app rode o seguinte comando estando dentro da pasta do projeto
 
 > node app.js
 
-Com o app rodando basta acessar o app seu [localhost](http://localhost:8000) para ve-lo em funcionamento
+Com o app rodando basta acessá-lo pelo link [localhost](http://localhost:8000) para ve-lo em funcionamento
+
+Para acessar a área do gerente onde lista as visitas registradas basta acessar este link [localhost/admin](http://localhost:8000/admin)
 
 ### Modulos
 
