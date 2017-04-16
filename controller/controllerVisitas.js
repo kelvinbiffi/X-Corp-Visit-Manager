@@ -1,9 +1,13 @@
 module.exports = function() {
 
   var jsonCidades = require("../db/cidades.json").cidades;
+  var jsonVendedores = require("../db/vendedores.json");
 
   var mensagemFaltandoCampos = "Para agendar uma visita é necessário informar todos os campos!";
   var mensagemDiasDeSemana = "Escolha uma data para visita entre segunda e sexta-feira!";
+
+  var arrVisitasAgendadas;
+  var idVendedor;
 
   /**
    * Objeto de retorno
@@ -51,14 +55,54 @@ module.exports = function() {
   };
 
   /**
+   * Alternar os vendedores de forma justa
+   */
+  var alternaVendedores = function(){
+    var empatada = true;
+    var idVendedorDeficitario;
+    var menorValor = 0;
+
+    for (var i = 0; i < jsonVendedores.vendedores.length; i++) {
+      vend = arrVisitasAgendadas[i];
+
+      if(i == 0){
+        idVendedorDeficitario = i;
+        menorValor = vend.visitas;
+
+      }else{
+        if(vend.visitas < menorValor){
+          idVendedorDeficitario = i;
+          menorValor = vend.visitas;
+        }
+
+        if(vend.visitas != arrVisitasAgendadas[i-1].visitas){
+          empatada = false;
+        }
+      }
+    }
+
+    if(empatada){//Se todos os vendedores tiverem o mesmo número de visitas agendadas randomizar um vendedor
+      idVendedor = Math.floor((Math.random() * jsonVendedores.vendedores.length));
+    }else{//Caso contrário pega um dos vendedores com menos visitas agendadas
+      idVendedor = idVendedorDeficitario;
+    }
+
+  };
+
+  /**
    * Persistir nova visita
    */
   var persistirNovaVisita = function(){
     var fs = require("fs"); //module to write files
     var jsonVisitas = require("../db/visitas.json");
-    var jsonVendedores = require("../db/vendedores.json");
     var objNovaVisita;
-    var idVendedor = Math.floor((Math.random() * jsonVendedores.vendedores.length));
+    arrVisitasAgendadas = [];
+    idVendedor = null;
+
+    //Montar arr para contar as visitas para cada desenvolvedor
+    for (var i = 0; i < jsonVendedores.vendedores.length; i++) {
+      arrVisitasAgendadas.push({visitas: 0});
+    }
 
     if(jsonVisitas.visitas.length > 0){
       for (var i = 0; i < jsonVisitas.visitas.length; i++) {
@@ -69,7 +113,13 @@ module.exports = function() {
             break;
           }
         }
+        arrVisitasAgendadas[visita.vendedor].visitas++;
       }
+    }
+
+    //Se não tiver um vendedor selecionado, buscar o vendedor para a próxima visita
+    if(idVendedor == null){
+      alternaVendedores();
     }
 
     objNovaVisita = {
@@ -82,6 +132,7 @@ module.exports = function() {
     };
 
     jsonVisitas.visitas.push(objNovaVisita);
+    console.log("Visita agendada");
     retorno.success = "Visita agendada";
     fs.writeFile( "./db/visitas.json", JSON.stringify( jsonVisitas ), "utf8" );
   }
