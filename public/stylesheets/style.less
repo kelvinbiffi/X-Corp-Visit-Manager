@@ -167,23 +167,17 @@ html, body{
 .appointments{
   background-color: @colorAlto;
   background-image: @adminBackground;
-  text-align: center;
-
+  text-align: left;
   .content{
     padding-top: 0!important;
     h1{
+      text-align: center;
       font-family: @siteFontFamily;
       font-size: 60px;
       @media(max-width: @sm-max){
         font-size: 30px;
       }
       color: @colorWhite;
-    }
-
-    .button-primary{
-      @media(max-width: @sm-max){
-        width: 45%;
-      }
     }
 
     .back{
@@ -194,27 +188,101 @@ html, body{
       float: right;
     }
 
+    .interval{
+      text-align: center;
+      background-color: lighten(@colorBlackSilver, 60%);
+      margin-top: 120px;
+      border: 1px solid lighten(@colorBlackSilver, 30%);
+
+      span{
+        font-family: @siteFontFamily;
+        color: @colorBlack;
+        font-size: 18px;
+        padding: 10px;
+        display: block;
+
+        a{
+          text-decoration: none;
+          img{
+            width: 25px;
+            margin-bottom: -8px;
+          }
+        }
+      }
+    }
+
     .semanario{
       position: relative;
       width: 100%;
-      background-color: lighten(@colorBlackSilver, 50%);
-      margin-top: 120px;
+      background-color: lighten(@colorBlackSilver, 60%);
+      overflow: hidden;
 
       .day{
         width: 20%;
         height: auto;
         float: left;
+        position: relative;
         @media(max-width: @sm-max){
           float: none;
+          width: 100%;
+          border-top: 30px solid @colorBlackSilver;
+          &:first-child{
+            border-top: 1px solid lighten(@colorBlackSilver, 30%);
+          }
+
         }
-        margin: auto;
 
-        .display{
+        span{
+          font-family: @siteFontFamily;
+        }
 
+        .date{
+          border-style: solid;
+          border-color: lighten(@colorBlackSilver, 30%);
+          border-width: 1px;
+          position: relative;
+          padding: 10px;
+          span{
+            &:first-child{
+              display: inline-block;
+              padding: 10px;
+              font-size: 24px;
+            }
+            &:last-child{
+              float: right;
+              font-size: 12px;
+              padding: 4px;
+              position: absolute;
+              right: 0;
+              top: 0;
+            }
+          }
         }
 
         .appointment{
+          border-style: solid;
+          border-color: lighten(@colorBlackSilver, 30%);
+          border-width: 1px;
+          position: relative;
+          padding: 10px;
 
+          span{
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+          }
+          .salesperson{
+            font-size: 22px;
+            text-align: left;
+          }
+          .city{
+            font-size: 14px;
+          }
+          .client{
+            font-size: 16px;
+          }
+          .info{
+            font-size: 12px;
+          }
         }
 
       }

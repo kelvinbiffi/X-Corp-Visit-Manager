@@ -36,7 +36,7 @@ module.exports = function() {
   /**
    * Verificar se a data escolhida esta dentro da semana para as visitas agendadas
    */
-  var verifyBetweenDates = function(visita){
+  var verifyDateChoiceIsBetweenDates = function(visita){
     var dateSchedule = new Date(visita.date + " 00:00"); //Data da visita já agendada
     var dateChoise = new Date(retorno.date + " 00:00"); //Data escolhida pelo usuario
 
@@ -64,7 +64,7 @@ module.exports = function() {
       for (var i = 0; i < jsonVisitas.visitas.length; i++) {
         var visita = jsonVisitas.visitas[i];
         if (visita.cidade == retorno.city) {
-          if(verifyBetweenDates(visita)){
+          if(verifyDateChoiceIsBetweenDates(visita)){
             idVendedor = visita.vendedor;
             break;
           }

@@ -11,22 +11,39 @@
         <%= title %>
       </h1>
 
-      <button class="button-primary back" href="#">Anterior</button>
-      <button class="button-primary next" href="#">Próxima</button>
+      <a class="button-primary back" href="/admin?move=back">Anterior</a>
+      <a class="button-primary next" href="/admin?move=next">Próxima</a>
 
+      <div class="interval">
+        <span>
+          <a href="/admin">
+            <img src="images/calendar-time.png" title="Semana atual">
+          </a>
+          <%= intervalo %>
+        </span>
+      </div>
       <div class="semanario">
         <% Object.keys(appointments).forEach(function(prop) { %>
           <div class="day">
-            <span class="full"><%= appointments[prop].diaSemana %></span>
-            <span class="date"><%= appointments[prop].dia %></span>
+            <div class="date">
+              <span><%= appointments[prop].diaSemana %></span>
+              <span><%= appointments[prop].dia %></span>
+            </div>
+
             <% if (appointments[prop].visitas.length > 0) { %>
               <% for(var i=0; i < appointments[prop].visitas.length; i++) { %>
-                <div class="visit">
+                <div class="appointment">
                  <span class="salesperson"><%= vendedores[appointments[prop].visitas[i].vendedor] %></span><br>
-                 <span class="salesperson"><%= cidades[appointments[prop].visitas[i].cidade] %></span><br>
-                 <span class="client"><%= appointments[prop].visitas[i].nome %></span>
+                 <span class="city"><%= cidades[appointments[prop].visitas[i].cidade] %></span><br><br>
+                 <span class="client"><%= appointments[prop].visitas[i].nome %></span><br>
+                 <span class="info"><%= appointments[prop].visitas[i].telefone %></span><br>
+                 <span class="info"><%= appointments[prop].visitas[i].email %></span><br>
                 </div>
               <% } %>
+            <% } else { %>
+              <div class="appointment">
+               <span class="info">Não há visitas agendadas para este dia</span><br>
+              </div>
             <% } %>
           </div>
         <% }); %>

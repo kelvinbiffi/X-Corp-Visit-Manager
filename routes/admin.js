@@ -5,7 +5,7 @@ var controllerAppointments = require('../controller/controllerAppointments.js')(
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  controllerAppointments.gerarSemanario();
+  controllerAppointments.gerarSemanario(req);
   res.render('appointments', controllerAppointments.retorno);
 });
 

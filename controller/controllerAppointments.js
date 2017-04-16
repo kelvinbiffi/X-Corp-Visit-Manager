@@ -3,6 +3,8 @@ module.exports = function() {
   var jsonCidades = require("../db/cidades.json").cidades;
   var jsonVendedores = require("../db/vendedores.json").vendedores;
 
+  var date = new Date(); //Data atual
+
   /**
    * Objeto de retorno
    */
@@ -10,7 +12,8 @@ module.exports = function() {
     title: 'Semanário de visitas',
     cidades: jsonCidades,
     vendedores: jsonVendedores,
-    appointments: []
+    appointments: [],
+    intervalo: ""
   };
 
   /**
@@ -40,11 +43,24 @@ module.exports = function() {
   };
 
   /**
-   * Pegar os dias da semana
+   * Manipular a data para a geração do semanario de acordo com o comando informado
    */
-  var getDias = function(){
-    var date = new Date(); //Data atual
-    var date = new Date(getStringDate(date) + " 00:00");
+  var handlePagination = function(req){
+    if(req.query.move){
+      date.setDate(date.getDate() + (req.query.move == "next" ? 6 : -6));
+    }else{
+      date = new Date();
+    }
+  };
+
+  /**
+   * Pegar os dias da semana
+   *
+   * @param red {object}
+   */
+  var getDias = function(req){
+    handlePagination(req);
+    date = new Date(getStringDate(date) + " 00:00");
     if(date.getDay() == 0){
       date.setDate(date.getDate() + 1) ;
     }else if(date.getDay() == 6){
@@ -100,8 +116,8 @@ module.exports = function() {
   /**
    * Buscar visitas agendatas e montar o semanário pára a semana
    */
-  var montarSemanario = function(){
-    var objDias = getDias();
+  var montarSemanario = function(req){
+    var objDias = getDias(req);
 
     var jsonVisitas = require("../db/visitas.json");
     if(jsonVisitas.visitas.length > 0){
@@ -113,9 +129,8 @@ module.exports = function() {
       }
     }
 
+    retorno.intervalo = getStringDate(objDias.monday) + " até " + getStringDate(objDias.friday);
     retorno.appointments = objDias.dias;
-
-    console.log(retorno.appointments, "appointments");
 
     console.log("Calendário gerado");
   }
@@ -129,9 +144,9 @@ module.exports = function() {
     /**
      * Montar semanario
      */
-    gerarSemanario: function(){
+    gerarSemanario: function(req){
       clearRetorno();
-      montarSemanario();
+      montarSemanario(req);
     }
 
   };
