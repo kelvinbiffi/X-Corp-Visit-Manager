@@ -1,4 +1,4 @@
-# Semanário de Visitas - [VERSION](VERSION)
+# Semanário de Visitas - 1.0.0
 
 ### Conteúdos
 - [Semanário de visitas](#weekly-calendar)
