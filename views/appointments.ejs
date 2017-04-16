@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <% include includes/head.html %>
+  </head>
+  <body class="appointments">
+
+    <div class="content">
+      <h1>
+        <%= title %>
+      </h1>
+
+      <button class="button-primary back" href="#">Anterior</button>
+      <button class="button-primary next" href="#">Próxima</button>
+
+      <div class="semanario">
+        <% Object.keys(appointments).forEach(function(prop) { %>
+          <div class="day">
+            <span class="full"><%= appointments[prop].diaSemana %></span>
+            <span class="date"><%= appointments[prop].dia %></span>
+            <% if (appointments[prop].visitas.length > 0) { %>
+              <% for(var i=0; i < appointments[prop].visitas.length; i++) { %>
+                <div class="visit">
+                 <span class="salesperson"><%= vendedores[appointments[prop].visitas[i].vendedor] %></span><br>
+                 <span class="salesperson"><%= cidades[appointments[prop].visitas[i].cidade] %></span><br>
+                 <span class="client"><%= appointments[prop].visitas[i].nome %></span>
+                </div>
+              <% } %>
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+
+    </div>
+
+  </body>
+</html>

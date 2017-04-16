@@ -46,6 +46,7 @@
 
 @indexBackground: url("../images/xbgIndex.png");
 @scheduleBackground: url("../images/xbgSchedule.png");
+@adminBackground: url("../images/xbgAdmin.png");
 
 @siteFontFamily: 'Raleway', sans-serif;
 @siteFontError: 'Cherry Cream Soda', cursive;
@@ -161,6 +162,68 @@ html, body{
 }
 
 /**
+ * Appointments page style
+ */
+.appointments{
+  background-color: @colorAlto;
+  background-image: @adminBackground;
+  text-align: center;
+
+  .content{
+    padding-top: 0!important;
+    h1{
+      font-family: @siteFontFamily;
+      font-size: 60px;
+      @media(max-width: @sm-max){
+        font-size: 30px;
+      }
+      color: @colorWhite;
+    }
+
+    .button-primary{
+      @media(max-width: @sm-max){
+        width: 45%;
+      }
+    }
+
+    .back{
+      float: left;
+    }
+
+    .next{
+      float: right;
+    }
+
+    .semanario{
+      position: relative;
+      width: 100%;
+      background-color: lighten(@colorBlackSilver, 50%);
+      margin-top: 120px;
+
+      .day{
+        width: 20%;
+        height: auto;
+        float: left;
+        @media(max-width: @sm-max){
+          float: none;
+        }
+        margin: auto;
+
+        .display{
+
+        }
+
+        .appointment{
+
+        }
+
+      }
+
+    }
+  }
+}
+
+/**
  * Index page style
  */
 .index{
@@ -186,10 +249,6 @@ html, body{
           color: @colorBlack;
         }
       }
-    }
-
-    a{
-      .button-primary;
     }
   }
 }
@@ -227,6 +286,9 @@ html, body{
         border: 1px solid @colorBlack;
         border-radius: 3px;
         min-width: 300px;
+        @media(max-width: @xs-max){
+          min-width: 90%;
+        }
         .boxSizing(content-box);
         &:focus{
             outline: none;
