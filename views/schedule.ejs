@@ -9,45 +9,53 @@
     <% include includes/header.html %>
 
     <div class="content">
-      <h1>
-        <%= title %>
-      </h1>
-      <br>
-
-      <form class="" action="/schedule" method="post">
-
-        <% if (erro != '') { %>
-          <p class="alert"><%= erro %></p>
-        <% } %>
-
-        <span>Nome</span><br>
-        <input type="text" name="name" value="<%= name %>"><br>
+      <% if (success != '') { %>
+        <h1>
+          <%= success %>
+        </h1>
+        <p class="success">
+          Em breve um de nossos vendedores entrará em contato para mais informações
+        </p>
+      <% } else { %>
+        <h1>
+          <%= title %>
+        </h1>
         <br>
 
-        <span>E-mail</span><br>
-        <input type="email" name="email" value="<%= email %>"><br>
-        <br>
+        <form class="" action="/schedule" method="post">
 
-        <span>Telefone</span><br>
-        <input type="text" name="fone" value="<%= fone %>"><br>
-        <br>
-
-        <span>Cidade</span><br>
-        <select class="" name="city">
-          <option value="">Selecione a cidade</option>
-          <% for(var i=0; i < cidades.length; i++) { %>
-            <option value="<%= i %>" <% if (i == city && city != '') { %> selected <% } %> ><%= cidades[i] %></option>
+          <% if (erro != '') { %>
+            <p class="alert"><%= erro %></p>
           <% } %>
-        </select><br>
-        <br>
 
-        <span>Data</span><br>
-        <input type="date" name="date" value="<%= date %>"><br>
-        <br>
+          <span>Nome</span><br>
+          <input type="text" name="name" value="<%= name %>"><br>
+          <br>
 
-        <input class="button-primary" type="submit" value="Agendar"></input>
-      </form>
+          <span>E-mail</span><br>
+          <input type="email" name="email" value="<%= email %>"><br>
+          <br>
 
+          <span>Telefone</span><br>
+          <input type="text" name="fone" value="<%= fone %>"><br>
+          <br>
+
+          <span>Cidade</span><br>
+          <select class="" name="city">
+            <option value="">Selecione a cidade</option>
+            <% for(var i=0; i < cidades.length; i++) { %>
+              <option value="<%= i %>" <% if (i == city && city != '') { %> selected <% } %> ><%= cidades[i] %></option>
+            <% } %>
+          </select><br>
+          <br>
+
+          <span>Data</span><br>
+          <input type="date" name="date" value="<%= date %>"><br>
+          <br>
+
+          <input class="button-primary" type="submit" value="Agendar"></input>
+        </form>
+      <% } %>
     </div>
 
   </body>

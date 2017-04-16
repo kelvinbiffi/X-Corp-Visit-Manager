@@ -11,9 +11,7 @@ router.get('/', function(req, res, next) {
 
 /* POST Schedule form. */
 router.post('/', function(req, res, next) {
-
   controllerVisitas.manipularVisita(req.body);
-
   res.render('schedule', controllerVisitas.retorno);
 
 });
