@@ -3,9 +3,6 @@ module.exports = function() {
   var jsonCidades = require("../db/cidades.json").cidades;
   var jsonVendedores = require("../db/vendedores.json");
 
-  var mensagemFaltandoCampos = "Para agendar uma visita é necessário informar todos os campos!";
-  var mensagemDiasDeSemana = "Escolha uma data para visita entre segunda e sexta-feira!";
-
   var arrVisitasAgendadas;
   var idVendedor;
 
@@ -153,16 +150,20 @@ module.exports = function() {
 
       clearRetorno(post);
 
-      var dt;
-      if(post.date != ""){
-        dt = new Date(post.date + " 00:00");
-      }
+      validateVisitas = require("../validate/validateVisitas.js")(post);
 
-      if(post.name == "" || post.email == "" || post.fone == "" || post.city == "" || post.date == ""){
-        retorno.erro = mensagemFaltandoCampos;
-      }else if(dt.getDay() == 0 || dt.getDay() == 6){
-        retorno.erro = mensagemDiasDeSemana;
+      if(!validateVisitas.validateEmptyFields()){
+        retorno.erro = validateVisitas.mensagemFaltandoCampos;
+      }else if(!validateVisitas.validateEmail()){
+        retorno.erro = validateVisitas.mensagemEmailFormatoInvalido;
+      }else if(!validateVisitas.validateTelefone()){
+        retorno.erro = validateVisitas.mensagemTelefoneFormatoInvalido;
+      }else if(!validateVisitas.validateDate()){
+        retorno.erro = validateVisitas.mensagemDataIFormatoInvalido;
+      }else if(!validateVisitas.validateDiaDeSemana()){
+        retorno.erro = validateVisitas.mensagemDiasDeSemana;
       }else{
+        retorno.date = post.date;
         persistirNovaVisita(post);
       }
 
